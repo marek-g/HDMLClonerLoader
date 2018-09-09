@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HDMLClonerLoader", "HDMLClonerLoader\HDMLClonerLoader.vcxproj", "{3AB85BB8-3076-48B9-A0A4-43D7670C496A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HDMLClonerLoaderData", "HDMLClonerLoaderData\HDMLClonerLoaderData.vcxproj", "{5FB34203-AD58-46F3-BD8D-290C565B298D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3AB85BB8-3076-48B9-A0A4-43D7670C496A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3AB85BB8-3076-48B9-A0A4-43D7670C496A}.Debug|Win32.Build.0 = Debug|Win32
+		{3AB85BB8-3076-48B9-A0A4-43D7670C496A}.Release|Win32.ActiveCfg = Release|Win32
+		{3AB85BB8-3076-48B9-A0A4-43D7670C496A}.Release|Win32.Build.0 = Release|Win32
+		{5FB34203-AD58-46F3-BD8D-290C565B298D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5FB34203-AD58-46F3-BD8D-290C565B298D}.Debug|Win32.Build.0 = Debug|Win32
+		{5FB34203-AD58-46F3-BD8D-290C565B298D}.Release|Win32.ActiveCfg = Release|Win32
+		{5FB34203-AD58-46F3-BD8D-290C565B298D}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
