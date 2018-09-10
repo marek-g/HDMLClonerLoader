@@ -46,86 +46,144 @@ cwnd_show_window _cwnd_show_window = (cwnd_show_window)0x43FA98; //0x44C6EC;
 
 int __fastcall __window_layout(int self, void *notUsed, signed int width, int height)
 {
-	int v3; // esi@1
 	int result; // eax@1
 	int v5; // edi@10
 	int v6; // edi@15
 
-	v3 = self;
 	result = *(DWORD *)(self + 3000);
 	if (!result)
 	{
 		result = *(DWORD *)(self + 2736);
 		if (result)
 		{
+			// MAREK BEGIN
+			_cwnd_move_window((self + 1296), 0, 7, 7, width - 13, height - 13, 1);
+			_cwnd_move_window((self + 2904), 0, 7, 7, width - 13, height - 13, 1);
+			_cwnd_show_window((self + 2704), 0, 0);
+			_cwnd_show_window((self + 696), 0, 0);
+			_cwnd_show_window((self + 896), 0, 0);
+			_cwnd_show_window((self + 1096), 0, 0);
+			_cwnd_show_window((self + 1704), 0, 0);
+			_cwnd_show_window((self + 96), 0, 0);
+			_cwnd_show_window((self + 1904), 0, 0);
+			_cwnd_show_window((self + 496), 0, 0);
+			_cwnd_show_window((self + 2504), 0, 0);
+			_cwnd_show_window((self + 2104), 0, 0);
+			_cwnd_show_window((self + 296), 0, 0);
+			_cwnd_show_window((self + 2304), 0, 0);
+			return result;
+			// MAREK END
+
+
+			// window close button
 			_cwnd_move_window((self + 2704), 0, width - 25, 5, 13, 13, 1);
-			_cwnd_move_window((v3 + 696), 0, width - 50, 5, 13, 13, 1);
-			_cwnd_move_window((v3 + 896), 0, width - 75, 5, 13, 13, 1);
-			_cwnd_move_window((v3 + 1096), 0, width - 100, 5, 13, 13, 1);
-			if (*(DWORD *)(v3 + 2936))
+
+			// window minimize button
+			_cwnd_move_window((self + 696), 0, width - 50, 5, 13, 13, 1);
+
+			// window help button
+			_cwnd_move_window((self + 896), 0, width - 75, 5, 13, 13, 1);
+
+			// window about (info) button
+			_cwnd_move_window((self + 1096), 0, width - 100, 5, 13, 13, 1);
+
+			if (*(DWORD *)(self + 2936))
 			{
+				//OutputDebugString(L"1");
+
 				if (*((void**)0x5229D4))
 				{
+					//OutputDebugString(L"2");
+
 					_sub_420C70((int)*((void**)0x5229D4), 0, 7, 30, width - 13, height - 100);
 					if (*((DWORD *)*((void**)0x5229D4) + 447) != 1)
-						_sub_42C3D0((v3 + 2904), 0, 0);
+						_sub_42C3D0((self + 2904), 0, 0);
 				}
-				_cwnd_move_window((v3 + 1296), 0, 7, 30, width - 13, height - 100, 1);
-				_cwnd_move_window((v3 + 2904), 0, 7, 30, width - 13, height - 100, 1);
-				_cwnd_move_window((v3 + 1368), 0, width - 100, height - 35, 67, 12, 1);
-				_cwnd_move_window((v3 + 1504), 0, width - 30, height - 35, 13, 13, 1);
-				if (*(DWORD *)(v3 + 5408) && (signed int)*((WPARAM*)0x52248C) < 3)
+
+				// video window
+				_cwnd_move_window((self + 1296), 0, 7, 30, width - 13, height - 100, 1);
+				_cwnd_move_window((self + 2904), 0, 7, 30, width - 13, height - 100, 1);
+
+				_cwnd_move_window((self + 1368), 0, width - 100, height - 35, 67, 12, 1);
+				_cwnd_move_window((self + 1504), 0, width - 30, height - 35, 13, 13, 1);
+				if (*(DWORD *)(self + 5408) && (signed int)*((WPARAM*)0x52248C) < 3)
 				{
-					_cwnd_move_window((v3 + 1704), 0, width / 2 - 129, height - 50, 38, 38, 1);
-					_cwnd_move_window((v3 + 96), 0, width / 2 - 197, height - 50, 38, 38, 1);
-					_cwnd_move_window((v3 + 1904), 0, width / 2 - 265, height - 50, 38, 38, 1);
-					_cwnd_move_window((v3 + 496), 0, width / 2 - 61, height - 63, 56, 56, 1);
-					_cwnd_move_window((v3 + 2504), 0, width / 2 + 5, height - 63, 56, 56, 1);
-					_cwnd_move_window((v3 + 2104), 0, width / 2 + 91, height - 50, 38, 38, 1);
-					_cwnd_move_window((v3 + 296), 0, width / 2 + 159, height - 50, 38, 38, 1);
-					_cwnd_move_window((v3 + 2304), 0, width / 2 + 227, height - 50, 38, 38, 1);
-					_cwnd_show_window((v3 + 496), 0, 5);
+					//OutputDebugString(L"3");
+
+					_cwnd_move_window((self + 1704), 0, width / 2 - 129, height - 50, 38, 38, 1);
+					_cwnd_move_window((self + 96), 0, width / 2 - 197, height - 50, 38, 38, 1);
+					_cwnd_move_window((self + 1904), 0, width / 2 - 265, height - 50, 38, 38, 1);
+					_cwnd_move_window((self + 496), 0, width / 2 - 61, height - 63, 56, 56, 1);
+					_cwnd_move_window((self + 2504), 0, width / 2 + 5, height - 63, 56, 56, 1);
+					_cwnd_move_window((self + 2104), 0, width / 2 + 91, height - 50, 38, 38, 1);
+					_cwnd_move_window((self + 296), 0, width / 2 + 159, height - 50, 38, 38, 1);
+					_cwnd_move_window((self + 2304), 0, width / 2 + 227, height - 50, 38, 38, 1);
+					_cwnd_show_window((self + 496), 0, 5);
 				}
 				else
 				{
+					//OutputDebugString(L"4");
+
 					v5 = (width - 56) / 2;
-					_cwnd_move_window((v3 + 2504), 0, v5, height - 63, 56, 56, 1);
-					_cwnd_move_window((v3 + 2104), 0, v5 + 86, height - 50, 38, 38, 1);
-					_cwnd_move_window((v3 + 296), 0, v5 + 154, height - 50, 38, 38, 1);
-					_cwnd_move_window((v3 + 2304), 0, v5 + 222, height - 50, 38, 38, 1);
-					_cwnd_move_window((v3 + 1704), 0, v5 - 68, height - 50, 38, 38, 1);
-					_cwnd_move_window((v3 + 96), 0, v5 - 136, height - 50, 38, 38, 1);
-					_cwnd_move_window((v3 + 1904), 0, v5 - 204, height - 50, 38, 38, 1);
-					_cwnd_show_window((v3 + 496), 0, 0);
+					
+					// record button
+					_cwnd_move_window((self + 2504), 0, v5, height - 63, 56, 56, 1);
+
+					// capture image button
+					_cwnd_move_window((self + 2104), 0, v5 + 86, height - 50, 38, 38, 1);
+					
+					// capture GIF button
+					_cwnd_move_window((self + 296), 0, v5 + 154, height - 50, 38, 38, 1);
+					
+					// settings button
+					_cwnd_move_window((self + 2304), 0, v5 + 222, height - 50, 38, 38, 1);
+					
+					// full screen button
+					_cwnd_move_window((self + 1704), 0, v5 - 68, height - 50, 38, 38, 1);
+					
+					// video broadcast button
+					_cwnd_move_window((self + 96), 0, v5 - 136, height - 50, 38, 38, 1);
+					
+					// file list button
+					_cwnd_move_window((self + 1904), 0, v5 - 204, height - 50, 38, 38, 1);
+					
+					// pause recording button
+					_cwnd_show_window((self + 496), 0, 0);
 				}
 			}
-			_sub_429300(*(int *)(v3 + 2992), 0);
-			_sub_4282F0(*(int *)(v3 + 2996), 0);
+			_sub_429300(*(int *)(self + 2992), 0);
+			_sub_4282F0(*(int *)(self + 2996), 0);
 			result = _sub_42E6F0();
 			if (result)
 			{
-				if (*(DWORD *)(v3 + 5408) && (signed int)*((WPARAM*)0x52248C) < 3)
+				//OutputDebugString(L"5");
+
+				if (*(DWORD *)(self + 5408) && (signed int)*((WPARAM*)0x52248C) < 3)
 				{
-					_cwnd_move_window((v3 + 1704), 0, width / 2 - 129, height - 50, 38, 38, 1);
-					_cwnd_move_window((v3 + 1904), 0, width / 2 - 197, height - 50, 38, 38, 1);
-					_cwnd_move_window((v3 + 496), 0, width / 2 - 61, height - 63, 56, 56, 1);
-					_cwnd_move_window((v3 + 2504), 0, width / 2 + 5, height - 63, 56, 56, 1);
-					_cwnd_move_window((v3 + 2104), 0, width / 2 + 91, height - 50, 38, 38, 1);
-					_cwnd_move_window((v3 + 2304), 0, width / 2 + 159, height - 50, 38, 38, 1);
-					_cwnd_show_window((v3 + 496), 0, 5);
+					//OutputDebugString(L"6");
+
+					_cwnd_move_window((self + 1704), 0, width / 2 - 129, height - 50, 38, 38, 1);
+					_cwnd_move_window((self + 1904), 0, width / 2 - 197, height - 50, 38, 38, 1);
+					_cwnd_move_window((self + 496), 0, width / 2 - 61, height - 63, 56, 56, 1);
+					_cwnd_move_window((self + 2504), 0, width / 2 + 5, height - 63, 56, 56, 1);
+					_cwnd_move_window((self + 2104), 0, width / 2 + 91, height - 50, 38, 38, 1);
+					_cwnd_move_window((self + 2304), 0, width / 2 + 159, height - 50, 38, 38, 1);
+					_cwnd_show_window((self + 496), 0, 5);
 				}
 				else
 				{
+					//OutputDebugString(L"7");
+
 					v6 = (width - 56) / 2;
-					_cwnd_move_window((v3 + 2504), 0, v6, height - 63, 56, 56, 1);
-					_cwnd_move_window((v3 + 2104), 0, v6 + 86, height - 50, 38, 38, 1);
-					_cwnd_move_window((v3 + 2304), 0, v6 + 154, height - 50, 38, 38, 1);
-					_cwnd_move_window((v3 + 1704), 0, v6 - 68, height - 50, 38, 38, 1);
-					_cwnd_move_window((v3 + 1904), 0, v6 - 136, height - 50, 38, 38, 1);
-					_cwnd_show_window((v3 + 496), 0, 0);
+					_cwnd_move_window((self + 2504), 0, v6, height - 63, 56, 56, 1);
+					_cwnd_move_window((self + 2104), 0, v6 + 86, height - 50, 38, 38, 1);
+					_cwnd_move_window((self + 2304), 0, v6 + 154, height - 50, 38, 38, 1);
+					_cwnd_move_window((self + 1704), 0, v6 - 68, height - 50, 38, 38, 1);
+					_cwnd_move_window((self + 1904), 0, v6 - 136, height - 50, 38, 38, 1);
+					_cwnd_show_window((self + 496), 0, 0);
 				}
-				_cwnd_show_window((v3 + 96), 0, 0);
-				result = _cwnd_show_window((v3 + 296), 0, 0);
+				_cwnd_show_window((self + 96), 0, 0);
+				result = _cwnd_show_window((self + 296), 0, 0);
 			}
 		}
 	}
