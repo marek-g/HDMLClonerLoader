@@ -9,6 +9,13 @@ static void Init()
 }
 
 
+// Variables
+
+DWORD *_is_top_most_ptr = (DWORD*)0x52554C;
+DWORD *_keep_apect_rate_ptr = (DWORD*)0x525490;
+DWORD *_auto_hide_buttons_ptr = (DWORD*)0x525550;
+
+
 // WindowProc
 
 typedef int(__fastcall *window_proc)(int self, void *notUsed, unsigned int wParam, unsigned int uMsg, unsigned int lParam);
@@ -60,6 +67,52 @@ cwnd_show_window _cwnd_show_window = (cwnd_show_window)0x441A18; // ?ShowWindow@
 
 int __fastcall __window_proc(int self, void *notUsed, unsigned int wParam, unsigned int uMsg, unsigned int lParam)
 {
+	if ((wParam == WM_NCRBUTTONUP || wParam == WM_RBUTTONUP) &&
+		!*(DWORD *)(self + 3232))
+	{
+		// create popup menu
+
+		HWND hWnd = *((HWND *)self + 8);
+
+		HMENU mainMenu = CreatePopupMenu();
+
+		AppendMenu(mainMenu, 0, 0x64, L"Zawsze na wierzchu");
+		if (*_is_top_most_ptr)
+		{
+			CheckMenuItem(mainMenu, 0x64, MF_CHECKED);
+		}
+		AppendMenu(mainMenu, 0, MF_SEPARATOR, 0);
+		AppendMenu(mainMenu, 0, 0x65, L"Zachowaj aspekt");
+		if (*_keep_apect_rate_ptr)
+		{
+			CheckMenuItem(mainMenu, 0x65, MF_CHECKED);
+		}
+		AppendMenuA(mainMenu, 0, MF_SEPARATOR, 0);
+
+		HMENU subMenu1 = CreatePopupMenu();
+		AppendMenu(subMenu1, 0, 0xC8, L"16:9");
+		AppendMenu(subMenu1, 0, 0xC9, L"16:10");
+		AppendMenu(subMenu1, 0, 0xCA, L"4:3");
+		AppendMenu(mainMenu, MF_POPUP, (UINT_PTR)subMenu1, L"Ustaw aspekt");
+
+		AppendMenu(mainMenu, 0, MF_SEPARATOR, 0);
+		AppendMenu(mainMenu, 0, 0x66, L"Ukrywaj przyciski");
+		if (*_auto_hide_buttons_ptr)
+		{
+			CheckMenuItem(mainMenu, 0x66, MF_CHECKED);
+		}
+
+		POINT cursorPos;
+		GetCursorPos(&cursorPos);
+		TrackPopupMenu(mainMenu, TPM_RIGHTBUTTON, cursorPos.x, cursorPos.y, 0, hWnd, 0);
+		PostMessageA(hWnd, WM_NULL, 0, 0);
+
+		DestroyMenu(subMenu1);
+		DestroyMenu(mainMenu);
+
+		return 0;
+	}
+
 	return _window_proc(self, notUsed, wParam, uMsg, lParam);
 }
 
